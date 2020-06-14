@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.common.bpm.dao.BpmPreHandleDao">
+
+    <resultMap type="com.love.common.bpm.entity.BpmPreHandle" id="BpmPreHandleMap">
+        <result property="handleId" column="handle_id" jdbcType="VARCHAR"/>
+        <result property="instanceId" column="instance_id" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id" jdbcType="VARCHAR"/>
+        <result property="preStatus" column="pre_status" jdbcType="OTHER"/>
+        <result property="creatTime" column="creat_time" jdbcType="OTHER"/>
+        <result property="handleTime" column="handle_time" jdbcType="OTHER"/>
+        <result property="objId" column="obj_id" jdbcType="VARCHAR"/>
+        <result property="lockUserId" column="lock_user_id" jdbcType="VARCHAR"/>
+        <result property="lockTime" column="lock_time" jdbcType="OTHER"/>
+        <result property="curnodeId" column="curnode_id" jdbcType="VARCHAR"/>
+        <result property="operationId" column="operation_id" jdbcType="VARCHAR"/>
+        <result property="oldNodeId" column="old_node_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BpmPreHandleMap">
+        select
+          handle_id, instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id
+        from bpm_pre_handle
+        where handle_id = #{handleId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BpmPreHandleMap">
+        select
+          handle_id, instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id
+        from bpm_pre_handle
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BpmPreHandleMap">
+        select
+          handle_id, instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id
+        from bpm_pre_handle
+        <where>
+            <if test="handleId != null and handleId != ''">
+                and handle_id = #{handleId}
+            </if>
+            <if test="instanceId != null and instanceId != ''">
+                and instance_id = #{instanceId}
+            </if>
+            <if test="roleId != null and roleId != ''">
+                and role_id = #{roleId}
+            </if>
+            <if test="preStatus != null">
+                and pre_status = #{preStatus}
+            </if>
+            <if test="creatTime != null">
+                and creat_time = #{creatTime}
+            </if>
+            <if test="handleTime != null">
+                and handle_time = #{handleTime}
+            </if>
+            <if test="objId != null and objId != ''">
+                and obj_id = #{objId}
+            </if>
+            <if test="lockUserId != null and lockUserId != ''">
+                and lock_user_id = #{lockUserId}
+            </if>
+            <if test="lockTime != null">
+                and lock_time = #{lockTime}
+            </if>
+            <if test="curnodeId != null and curnodeId != ''">
+                and curnode_id = #{curnodeId}
+            </if>
+            <if test="operationId != null and operationId != ''">
+                and operation_id = #{operationId}
+            </if>
+            <if test="oldNodeId != null and oldNodeId != ''">
+                and old_node_id = #{oldNodeId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="handleId" useGeneratedKeys="true">
+        insert into bpm_pre_handle(instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id)
+        values (#{instanceId}, #{roleId}, #{preStatus}, #{creatTime}, #{handleTime}, #{objId}, #{lockUserId}, #{lockTime}, #{curnodeId}, #{operationId}, #{oldNodeId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update bpm_pre_handle
+        <set>
+            <if test="instanceId != null and instanceId != ''">
+                instance_id = #{instanceId},
+            </if>
+            <if test="roleId != null and roleId != ''">
+                role_id = #{roleId},
+            </if>
+            <if test="preStatus != null">
+                pre_status = #{preStatus},
+            </if>
+            <if test="creatTime != null">
+                creat_time = #{creatTime},
+            </if>
+            <if test="handleTime != null">
+                handle_time = #{handleTime},
+            </if>
+            <if test="objId != null and objId != ''">
+                obj_id = #{objId},
+            </if>
+            <if test="lockUserId != null and lockUserId != ''">
+                lock_user_id = #{lockUserId},
+            </if>
+            <if test="lockTime != null">
+                lock_time = #{lockTime},
+            </if>
+            <if test="curnodeId != null and curnodeId != ''">
+                curnode_id = #{curnodeId},
+            </if>
+            <if test="operationId != null and operationId != ''">
+                operation_id = #{operationId},
+            </if>
+            <if test="oldNodeId != null and oldNodeId != ''">
+                old_node_id = #{oldNodeId},
+            </if>
+        </set>
+        where handle_id = #{handleId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from bpm_pre_handle where handle_id = #{handleId}
+    </delete>
+
+</mapper>

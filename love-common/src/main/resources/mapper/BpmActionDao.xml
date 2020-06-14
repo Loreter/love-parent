@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.common.bpm.dao.BpmActionDao">
+
+    <resultMap type="com.love.common.bpm.entity.BpmAction" id="BpmActionMap">
+        <result property="actionId" column="action_id" jdbcType="VARCHAR"/>
+        <result property="startNode" column="start_node" jdbcType="VARCHAR"/>
+        <result property="endNode" column="end_node" jdbcType="VARCHAR"/>
+        <result property="exeSql" column="exe_sql" jdbcType="OTHER"/>
+        <result property="callCalss" column="call_calss" jdbcType="VARCHAR"/>
+        <result property="sqlVars" column="sql_vars" jdbcType="VARCHAR"/>
+        <result property="operationId" column="operation_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BpmActionMap">
+        select
+          action_id, start_node, end_node, exe_sql, call_calss, sql_vars, operation_id
+        from bpm_action
+        where action_id = #{actionId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BpmActionMap">
+        select
+          action_id, start_node, end_node, exe_sql, call_calss, sql_vars, operation_id
+        from bpm_action
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BpmActionMap">
+        select
+          action_id, start_node, end_node, exe_sql, call_calss, sql_vars, operation_id
+        from bpm_action
+        <where>
+            <if test="actionId != null and actionId != ''">
+                and action_id = #{actionId}
+            </if>
+            <if test="startNode != null and startNode != ''">
+                and start_node = #{startNode}
+            </if>
+            <if test="endNode != null and endNode != ''">
+                and end_node = #{endNode}
+            </if>
+            <if test="exeSql != null">
+                and exe_sql = #{exeSql}
+            </if>
+            <if test="callCalss != null and callCalss != ''">
+                and call_calss = #{callCalss}
+            </if>
+            <if test="sqlVars != null and sqlVars != ''">
+                and sql_vars = #{sqlVars}
+            </if>
+            <if test="operationId != null and operationId != ''">
+                and operation_id = #{operationId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="actionId" useGeneratedKeys="true">
+        insert into bpm_action(start_node, end_node, exe_sql, call_calss, sql_vars, operation_id)
+        values (#{startNode}, #{endNode}, #{exeSql}, #{callCalss}, #{sqlVars}, #{operationId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update bpm_action
+        <set>
+            <if test="startNode != null and startNode != ''">
+                start_node = #{startNode},
+            </if>
+            <if test="endNode != null and endNode != ''">
+                end_node = #{endNode},
+            </if>
+            <if test="exeSql != null">
+                exe_sql = #{exeSql},
+            </if>
+            <if test="callCalss != null and callCalss != ''">
+                call_calss = #{callCalss},
+            </if>
+            <if test="sqlVars != null and sqlVars != ''">
+                sql_vars = #{sqlVars},
+            </if>
+            <if test="operationId != null and operationId != ''">
+                operation_id = #{operationId},
+            </if>
+        </set>
+        where action_id = #{actionId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from bpm_action where action_id = #{actionId}
+    </delete>
+
+</mapper>

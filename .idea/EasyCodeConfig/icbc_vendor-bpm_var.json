@@ -1,0 +1,38 @@
+{
+  "name" : "BpmVar",
+  "comment" : "流程实例变量表",
+  "fullColumn" : [ {
+    "name" : "varId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "instanceId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "varName",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "varValue",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.love.common.bpm",
+  "savePath" : "./love-web/src/main/java/com/love/common/bpm",
+  "saveModelName" : "love-web"
+}

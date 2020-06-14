@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.common.bpm.dao.BpmKeywordDao">
+
+    <resultMap type="com.love.common.bpm.entity.BpmKeyword" id="BpmKeywordMap">
+        <result property="kid" column="kid" jdbcType="VARCHAR"/>
+        <result property="instanceId" column="instance_id" jdbcType="VARCHAR"/>
+        <result property="busiId" column="busi_id" jdbcType="VARCHAR"/>
+        <result property="busiName" column="busi_name" jdbcType="VARCHAR"/>
+        <result property="wfCode" column="wf_code" jdbcType="VARCHAR"/>
+        <result property="busiType" column="busi_type" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BpmKeywordMap">
+        select
+          kid, instance_id, busi_id, busi_name, wf_code, busi_type
+        from icbc_vendor.bpm_keyword
+        where kid = #{kid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BpmKeywordMap">
+        select
+          kid, instance_id, busi_id, busi_name, wf_code, busi_type
+        from icbc_vendor.bpm_keyword
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BpmKeywordMap">
+        select
+          kid, instance_id, busi_id, busi_name, wf_code, busi_type
+        from icbc_vendor.bpm_keyword
+        <where>
+            <if test="kid != null and kid != ''">
+                and kid = #{kid}
+            </if>
+            <if test="instanceId != null and instanceId != ''">
+                and instance_id = #{instanceId}
+            </if>
+            <if test="busiId != null and busiId != ''">
+                and busi_id = #{busiId}
+            </if>
+            <if test="busiName != null and busiName != ''">
+                and busi_name = #{busiName}
+            </if>
+            <if test="wfCode != null and wfCode != ''">
+                and wf_code = #{wfCode}
+            </if>
+            <if test="busiType != null and busiType != ''">
+                and busi_type = #{busiType}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="kid" useGeneratedKeys="true">
+        insert into icbc_vendor.bpm_keyword(instance_id, busi_id, busi_name, wf_code, busi_type)
+        values (#{instanceId}, #{busiId}, #{busiName}, #{wfCode}, #{busiType})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update icbc_vendor.bpm_keyword
+        <set>
+            <if test="instanceId != null and instanceId != ''">
+                instance_id = #{instanceId},
+            </if>
+            <if test="busiId != null and busiId != ''">
+                busi_id = #{busiId},
+            </if>
+            <if test="busiName != null and busiName != ''">
+                busi_name = #{busiName},
+            </if>
+            <if test="wfCode != null and wfCode != ''">
+                wf_code = #{wfCode},
+            </if>
+            <if test="busiType != null and busiType != ''">
+                busi_type = #{busiType},
+            </if>
+        </set>
+        where kid = #{kid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from icbc_vendor.bpm_keyword where kid = #{kid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/love-api/love-api.iml" filepath="$PROJECT_DIR$/love-api/love-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/love-base/love-base.iml" filepath="$PROJECT_DIR$/love-base/love-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/love-common/love-common.iml" filepath="$PROJECT_DIR$/love-common/love-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/love-parent.iml" filepath="$PROJECT_DIR$/love-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/love-service/love-service.iml" filepath="$PROJECT_DIR$/love-service/love-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/love-web/love-web.iml" filepath="$PROJECT_DIR$/love-web/love-web.iml" />
+    </modules>
+  </component>
+</project>

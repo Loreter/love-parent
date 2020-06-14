@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.common.bpm.dao.BpmAuditDao">
+
+    <resultMap type="com.love.common.bpm.entity.BpmAudit" id="BpmAuditMap">
+        <result property="aid" column="aid" jdbcType="VARCHAR"/>
+        <result property="instanceId" column="instance_id" jdbcType="VARCHAR"/>
+        <result property="wfId" column="wf_id" jdbcType="VARCHAR"/>
+        <result property="nodeId" column="node_id" jdbcType="VARCHAR"/>
+        <result property="nextNodeId" column="next_node_id" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="operationId" column="operation_id" jdbcType="VARCHAR"/>
+        <result property="creatTime" column="creat_time" jdbcType="OTHER"/>
+        <result property="status" column="status" jdbcType="OTHER"/>
+        <result property="handleId" column="handle_id" jdbcType="VARCHAR"/>
+        <result property="rejectReason" column="reject_reason" jdbcType="VARCHAR"/>
+        <result property="vendorId" column="vendor_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BpmAuditMap">
+        select
+          aid, instance_id, wf_id, node_id, next_node_id, user_id, operation_id, creat_time, status, handle_id, reject_reason, vendor_id
+        from bpm_audit
+        where aid = #{aid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BpmAuditMap">
+        select
+          aid, instance_id, wf_id, node_id, next_node_id, user_id, operation_id, creat_time, status, handle_id, reject_reason, vendor_id
+        from bpm_audit
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BpmAuditMap">
+        select
+          aid, instance_id, wf_id, node_id, next_node_id, user_id, operation_id, creat_time, status, handle_id, reject_reason, vendor_id
+        from bpm_audit
+        <where>
+            <if test="aid != null and aid != ''">
+                and aid = #{aid}
+            </if>
+            <if test="instanceId != null and instanceId != ''">
+                and instance_id = #{instanceId}
+            </if>
+            <if test="wfId != null and wfId != ''">
+                and wf_id = #{wfId}
+            </if>
+            <if test="nodeId != null and nodeId != ''">
+                and node_id = #{nodeId}
+            </if>
+            <if test="nextNodeId != null and nextNodeId != ''">
+                and next_node_id = #{nextNodeId}
+            </if>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="operationId != null and operationId != ''">
+                and operation_id = #{operationId}
+            </if>
+            <if test="creatTime != null">
+                and creat_time = #{creatTime}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="handleId != null and handleId != ''">
+                and handle_id = #{handleId}
+            </if>
+            <if test="rejectReason != null and rejectReason != ''">
+                and reject_reason = #{rejectReason}
+            </if>
+            <if test="vendorId != null and vendorId != ''">
+                and vendor_id = #{vendorId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="aid" useGeneratedKeys="true">
+        insert into bpm_audit(instance_id, wf_id, node_id, next_node_id, user_id, operation_id, creat_time, status, handle_id, reject_reason, vendor_id)
+        values (#{instanceId}, #{wfId}, #{nodeId}, #{nextNodeId}, #{userId}, #{operationId}, #{creatTime}, #{status}, #{handleId}, #{rejectReason}, #{vendorId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update bpm_audit
+        <set>
+            <if test="instanceId != null and instanceId != ''">
+                instance_id = #{instanceId},
+            </if>
+            <if test="wfId != null and wfId != ''">
+                wf_id = #{wfId},
+            </if>
+            <if test="nodeId != null and nodeId != ''">
+                node_id = #{nodeId},
+            </if>
+            <if test="nextNodeId != null and nextNodeId != ''">
+                next_node_id = #{nextNodeId},
+            </if>
+            <if test="userId != null and userId != ''">
+                user_id = #{userId},
+            </if>
+            <if test="operationId != null and operationId != ''">
+                operation_id = #{operationId},
+            </if>
+            <if test="creatTime != null">
+                creat_time = #{creatTime},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="handleId != null and handleId != ''">
+                handle_id = #{handleId},
+            </if>
+            <if test="rejectReason != null and rejectReason != ''">
+                reject_reason = #{rejectReason},
+            </if>
+            <if test="vendorId != null and vendorId != ''">
+                vendor_id = #{vendorId},
+            </if>
+        </set>
+        where aid = #{aid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from bpm_audit where aid = #{aid}
+    </delete>
+
+</mapper>

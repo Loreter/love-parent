@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.common.bpm.dao.BpmBusUseDao">
+
+    <resultMap type="com.love.common.bpm.entity.BpmBusUse" id="BpmBusUseMap">
+        <result property="useId" column="use_id" jdbcType="VARCHAR"/>
+        <result property="busId" column="bus_id" jdbcType="VARCHAR"/>
+        <result property="wfId" column="wf_id" jdbcType="VARCHAR"/>
+        <result property="updateDate" column="update_date" jdbcType="OTHER"/>
+        <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BpmBusUseMap">
+        select
+          use_id, bus_id, wf_id, update_date, remarks
+        from bpm_bus_use
+        where use_id = #{useId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BpmBusUseMap">
+        select
+          use_id, bus_id, wf_id, update_date, remarks
+        from bpm_bus_use
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BpmBusUseMap">
+        select
+          use_id, bus_id, wf_id, update_date, remarks
+        from bpm_bus_use
+        <where>
+            <if test="useId != null and useId != ''">
+                and use_id = #{useId}
+            </if>
+            <if test="busId != null and busId != ''">
+                and bus_id = #{busId}
+            </if>
+            <if test="wfId != null and wfId != ''">
+                and wf_id = #{wfId}
+            </if>
+            <if test="updateDate != null">
+                and update_date = #{updateDate}
+            </if>
+            <if test="remarks != null and remarks != ''">
+                and remarks = #{remarks}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="useId" useGeneratedKeys="true">
+        insert into bpm_bus_use(bus_id, wf_id, update_date, remarks)
+        values (#{busId}, #{wfId}, #{updateDate}, #{remarks})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update bpm_bus_use
+        <set>
+            <if test="busId != null and busId != ''">
+                bus_id = #{busId},
+            </if>
+            <if test="wfId != null and wfId != ''">
+                wf_id = #{wfId},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate},
+            </if>
+            <if test="remarks != null and remarks != ''">
+                remarks = #{remarks},
+            </if>
+        </set>
+        where use_id = #{useId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from bpm_bus_use where use_id = #{useId}
+    </delete>
+
+</mapper>
