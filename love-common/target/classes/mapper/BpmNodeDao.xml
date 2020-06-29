@@ -17,7 +17,7 @@
     <select id="queryById" resultMap="BpmNodeMap">
         select
           node_id, WF_ID, node_name, node_type, entitlement, code_page_id, operation_call, page_url
-        from icbc_vendor.bpm_node
+        from bpm_node
         where node_id = #{nodeId}
     </select>
 
@@ -25,7 +25,7 @@
     <select id="queryAllByLimit" resultMap="BpmNodeMap">
         select
           node_id, WF_ID, node_name, node_type, entitlement, code_page_id, operation_call, page_url
-        from icbc_vendor.bpm_node
+        from bpm_node
         limit #{offset}, #{limit}
     </select>
 
@@ -33,7 +33,7 @@
     <select id="queryAll" resultMap="BpmNodeMap">
         select
           node_id, WF_ID, node_name, node_type, entitlement, code_page_id, operation_call, page_url
-        from icbc_vendor.bpm_node
+        from bpm_node
         <where>
             <if test="nodeId != null and nodeId != ''">
                 and node_id = #{nodeId}
@@ -64,13 +64,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="nodeId" useGeneratedKeys="true">
-        insert into icbc_vendor.bpm_node(WF_ID, node_name, node_type, entitlement, code_page_id, operation_call, page_url)
+        insert into bpm_node(WF_ID, node_name, node_type, entitlement, code_page_id, operation_call, page_url)
         values (#{wfId}, #{nodeName}, #{nodeType}, #{entitlement}, #{codePageId}, #{operationCall}, #{pageUrl})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update icbc_vendor.bpm_node
+        update bpm_node
         <set>
             <if test="wfId != null and wfId != ''">
                 WF_ID = #{wfId},
@@ -99,7 +99,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from icbc_vendor.bpm_node where node_id = #{nodeId}
+        delete from bpm_node where node_id = #{nodeId}
     </delete>
 
 </mapper>

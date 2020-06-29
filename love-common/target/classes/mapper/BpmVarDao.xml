@@ -13,7 +13,7 @@
     <select id="queryById" resultMap="BpmVarMap">
         select
           var_id, instance_id, var_name, var_value
-        from icbc_vendor.bpm_var
+        from bpm_var
         where var_id = #{varId}
     </select>
 
@@ -21,7 +21,7 @@
     <select id="queryAllByLimit" resultMap="BpmVarMap">
         select
           var_id, instance_id, var_name, var_value
-        from icbc_vendor.bpm_var
+        from bpm_var
         limit #{offset}, #{limit}
     </select>
 
@@ -29,7 +29,7 @@
     <select id="queryAll" resultMap="BpmVarMap">
         select
           var_id, instance_id, var_name, var_value
-        from icbc_vendor.bpm_var
+        from bpm_var
         <where>
             <if test="varId != null and varId != ''">
                 and var_id = #{varId}
@@ -48,13 +48,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="varId" useGeneratedKeys="true">
-        insert into icbc_vendor.bpm_var(instance_id, var_name, var_value)
+        insert into bpm_var(instance_id, var_name, var_value)
         values (#{instanceId}, #{varName}, #{varValue})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update icbc_vendor.bpm_var
+        update bpm_var
         <set>
             <if test="instanceId != null and instanceId != ''">
                 instance_id = #{instanceId},
@@ -71,7 +71,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from icbc_vendor.bpm_var where var_id = #{varId}
+        delete from bpm_var where var_id = #{varId}
     </delete>
 
 </mapper>

@@ -21,7 +21,7 @@
     <select id="queryById" resultMap="BpmPreHandleMap">
         select
           handle_id, instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id
-        from icbc_vendor.bpm_pre_handle
+        from bpm_pre_handle
         where handle_id = #{handleId}
     </select>
 
@@ -29,7 +29,7 @@
     <select id="queryAllByLimit" resultMap="BpmPreHandleMap">
         select
           handle_id, instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id
-        from icbc_vendor.bpm_pre_handle
+        from bpm_pre_handle
         limit #{offset}, #{limit}
     </select>
 
@@ -37,7 +37,7 @@
     <select id="queryAll" resultMap="BpmPreHandleMap">
         select
           handle_id, instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id
-        from icbc_vendor.bpm_pre_handle
+        from bpm_pre_handle
         <where>
             <if test="handleId != null and handleId != ''">
                 and handle_id = #{handleId}
@@ -80,13 +80,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="handleId" useGeneratedKeys="true">
-        insert into icbc_vendor.bpm_pre_handle(instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id)
+        insert into bpm_pre_handle(instance_id, role_id, pre_status, creat_time, handle_time, obj_id, lock_user_id, lock_time, curnode_id, operation_id, old_node_id)
         values (#{instanceId}, #{roleId}, #{preStatus}, #{creatTime}, #{handleTime}, #{objId}, #{lockUserId}, #{lockTime}, #{curnodeId}, #{operationId}, #{oldNodeId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update icbc_vendor.bpm_pre_handle
+        update bpm_pre_handle
         <set>
             <if test="instanceId != null and instanceId != ''">
                 instance_id = #{instanceId},
@@ -127,7 +127,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from icbc_vendor.bpm_pre_handle where handle_id = #{handleId}
+        delete from bpm_pre_handle where handle_id = #{handleId}
     </delete>
 
 </mapper>

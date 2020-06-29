@@ -15,7 +15,7 @@
     <select id="queryById" resultMap="BpmBusinessMap">
         select
           business_id, business_name, creat_date, bpm_status, remarks, bus_type
-        from icbc_vendor.bpm_business
+        from bpm_business
         where business_id = #{businessId}
     </select>
 
@@ -23,7 +23,7 @@
     <select id="queryAllByLimit" resultMap="BpmBusinessMap">
         select
           business_id, business_name, creat_date, bpm_status, remarks, bus_type
-        from icbc_vendor.bpm_business
+        from bpm_business
         limit #{offset}, #{limit}
     </select>
 
@@ -31,7 +31,7 @@
     <select id="queryAll" resultMap="BpmBusinessMap">
         select
           business_id, business_name, creat_date, bpm_status, remarks, bus_type
-        from icbc_vendor.bpm_business
+        from bpm_business
         <where>
             <if test="businessId != null and businessId != ''">
                 and business_id = #{businessId}
@@ -56,13 +56,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="businessId" useGeneratedKeys="true">
-        insert into icbc_vendor.bpm_business(business_name, creat_date, bpm_status, remarks, bus_type)
+        insert into bpm_business(business_name, creat_date, bpm_status, remarks, bus_type)
         values (#{businessName}, #{creatDate}, #{bpmStatus}, #{remarks}, #{busType})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update icbc_vendor.bpm_business
+        update bpm_business
         <set>
             <if test="businessName != null and businessName != ''">
                 business_name = #{businessName},
@@ -85,7 +85,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from icbc_vendor.bpm_business where business_id = #{businessId}
+        delete from bpm_business where business_id = #{businessId}
     </delete>
 
 </mapper>

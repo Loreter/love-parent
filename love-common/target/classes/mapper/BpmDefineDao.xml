@@ -16,7 +16,7 @@
     <select id="queryById" resultMap="BpmDefineMap">
         select
           wf_id, wf_name, wf_code, status, creat_date, remarks, bus_id
-        from icbc_vendor.bpm_define
+        from bpm_define
         where wf_id = #{wfId}
     </select>
 
@@ -24,7 +24,7 @@
     <select id="queryAllByLimit" resultMap="BpmDefineMap">
         select
           wf_id, wf_name, wf_code, status, creat_date, remarks, bus_id
-        from icbc_vendor.bpm_define
+        from bpm_define
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="BpmDefineMap">
         select
           wf_id, wf_name, wf_code, status, creat_date, remarks, bus_id
-        from icbc_vendor.bpm_define
+        from bpm_define
         <where>
             <if test="wfId != null and wfId != ''">
                 and wf_id = #{wfId}
@@ -60,13 +60,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="wfId" useGeneratedKeys="true">
-        insert into icbc_vendor.bpm_define(wf_name, wf_code, status, creat_date, remarks, bus_id)
+        insert into bpm_define(wf_name, wf_code, status, creat_date, remarks, bus_id)
         values (#{wfName}, #{wfCode}, #{status}, #{creatDate}, #{remarks}, #{busId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update icbc_vendor.bpm_define
+        update bpm_define
         <set>
             <if test="wfName != null and wfName != ''">
                 wf_name = #{wfName},
@@ -92,7 +92,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from icbc_vendor.bpm_define where wf_id = #{wfId}
+        delete from bpm_define where wf_id = #{wfId}
     </delete>
 
 </mapper>

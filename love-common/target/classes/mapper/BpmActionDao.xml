@@ -16,7 +16,7 @@
     <select id="queryById" resultMap="BpmActionMap">
         select
           action_id, start_node, end_node, exe_sql, call_calss, sql_vars, operation_id
-        from icbc_vendor.bpm_action
+        from bpm_action
         where action_id = #{actionId}
     </select>
 
@@ -24,7 +24,7 @@
     <select id="queryAllByLimit" resultMap="BpmActionMap">
         select
           action_id, start_node, end_node, exe_sql, call_calss, sql_vars, operation_id
-        from icbc_vendor.bpm_action
+        from bpm_action
         limit #{offset}, #{limit}
     </select>
 
@@ -32,7 +32,7 @@
     <select id="queryAll" resultMap="BpmActionMap">
         select
           action_id, start_node, end_node, exe_sql, call_calss, sql_vars, operation_id
-        from icbc_vendor.bpm_action
+        from bpm_action
         <where>
             <if test="actionId != null and actionId != ''">
                 and action_id = #{actionId}
@@ -60,13 +60,13 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="actionId" useGeneratedKeys="true">
-        insert into icbc_vendor.bpm_action(start_node, end_node, exe_sql, call_calss, sql_vars, operation_id)
+        insert into bpm_action(start_node, end_node, exe_sql, call_calss, sql_vars, operation_id)
         values (#{startNode}, #{endNode}, #{exeSql}, #{callCalss}, #{sqlVars}, #{operationId})
     </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
-        update icbc_vendor.bpm_action
+        update bpm_action
         <set>
             <if test="startNode != null and startNode != ''">
                 start_node = #{startNode},
@@ -92,7 +92,7 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from icbc_vendor.bpm_action where action_id = #{actionId}
+        delete from bpm_action where action_id = #{actionId}
     </delete>
 
 </mapper>
