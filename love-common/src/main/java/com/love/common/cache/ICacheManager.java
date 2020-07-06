@@ -8,11 +8,10 @@ import redis.clients.jedis.JedisPubSub;
 
 /**
  *
- * @author zippoy(mashupeye@gmail.com)<br>
- *         2013-8-7 上午10:44:36<br>
- * 	Remark:<br>
+ * 缓存
  *
  *
+ * @author 孙振岳
  */
 public interface ICacheManager extends ICollectionCacheManager , ICounterCacheManager , IHashCacheManager , IHashByteCacheManager{
 	
